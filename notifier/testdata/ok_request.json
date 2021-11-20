@@ -1,0 +1,12 @@
+{
+  "channel": "general",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Just testing"
+      }
+    }
+  ]
+}
