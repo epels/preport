@@ -46,6 +46,7 @@ func TestSlack(t *testing.T) {
 
 		sc, err := notifier.NewSlack(ts.URL, "super-secret")
 		require.NoError(t, err)
+
 		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.NoError(t, err)
 	})
@@ -54,6 +55,7 @@ func TestSlack(t *testing.T) {
 		invalidBaseURL := "https://DF977BEA-4295-4758-AFF9-0EBCB1F509E2.fail"
 		sc, err := notifier.NewSlack(invalidBaseURL, "super-secret")
 		require.NoError(t, err)
+
 		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.Error(t, err)
 	})
@@ -65,6 +67,7 @@ func TestSlack(t *testing.T) {
 
 		sc, err := notifier.NewSlack(ts.URL, "super-secret")
 		require.NoError(t, err)
+
 		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.Error(t, err)
 	})
@@ -76,6 +79,7 @@ func TestSlack(t *testing.T) {
 
 		sc, err := notifier.NewSlack(ts.URL, "super-secret")
 		require.NoError(t, err)
+
 		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.Error(t, err)
 	})
