@@ -17,18 +17,16 @@ import (
 )
 
 type Slack struct {
-	httpc                    *http.Client
-	baseURL, bearer, channel string
+	httpc           *http.Client
+	baseURL, bearer string
 }
 
-func NewSlack(baseURL, bearer, channel string) (*Slack, error) {
+func NewSlack(baseURL, bearer string) (*Slack, error) {
 	switch "" {
 	case baseURL:
 		return nil, errors.New("baseURL must not be empty")
 	case bearer:
 		return nil, errors.New("bearer must not be empty")
-	case channel:
-		return nil, errors.New("channel must not be empty")
 	}
 	if u, err := url.Parse(baseURL); err != nil || (u.Scheme != "http" && u.Scheme != "https") {
 		return nil, errors.New("baseURL must be a valid http(s) URL")
@@ -43,11 +41,10 @@ func NewSlack(baseURL, bearer, channel string) (*Slack, error) {
 		},
 		baseURL: baseURL,
 		bearer:  bearer,
-		channel: channel,
 	}, nil
 }
 
-func (s *Slack) Notify(ctx context.Context, content string) error {
+func (s *Slack) Notify(ctx context.Context, channel, content string) error {
 	type textBlock struct {
 		Type string `json:"type"`
 		Text string `json:"text"`
@@ -60,7 +57,7 @@ func (s *Slack) Notify(ctx context.Context, content string) error {
 		Channel string  `json:"channel"`
 		Blocks  []block `json:"blocks"`
 	}{
-		Channel: s.channel,
+		Channel: channel,
 		Blocks: []block{
 			{
 				Type: "section",

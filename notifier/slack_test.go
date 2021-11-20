@@ -14,24 +14,20 @@ import (
 
 func TestNewSlack(t *testing.T) {
 	t.Run("OK", func(t *testing.T) {
-		sc, err := notifier.NewSlack("https://example.com", "bearer", "channel")
+		sc, err := notifier.NewSlack("https://example.com", "bearer")
 		require.NoError(t, err)
 		assert.NotNil(t, sc)
 	})
 	t.Run("Invalid baseURL", func(t *testing.T) {
-		_, err := notifier.NewSlack("ftp://example.com", "bearer", "channel")
+		_, err := notifier.NewSlack("ftp://example.com", "bearer")
 		require.Error(t, err)
 	})
 	t.Run("Empty baseURL", func(t *testing.T) {
-		_, err := notifier.NewSlack("", "bearer", "channel")
+		_, err := notifier.NewSlack("", "bearer")
 		require.Error(t, err)
 	})
 	t.Run("Empty bearer", func(t *testing.T) {
-		_, err := notifier.NewSlack("https://example.com", "", "channel")
-		require.Error(t, err)
-	})
-	t.Run("Empty channel", func(t *testing.T) {
-		_, err := notifier.NewSlack("https://example.com", "bearer", "")
+		_, err := notifier.NewSlack("https://example.com", "")
 		require.Error(t, err)
 	})
 }
@@ -48,17 +44,17 @@ func TestSlack(t *testing.T) {
 			testutil.WriteTestdata(t, "testdata/ok_response.json", w)
 		})
 
-		sc, err := notifier.NewSlack(ts.URL, "super-secret", "general")
+		sc, err := notifier.NewSlack(ts.URL, "super-secret")
 		require.NoError(t, err)
-		err = sc.Notify(context.Background(), "Just testing")
+		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.NoError(t, err)
 	})
 
 	t.Run("Round trip failed", func(t *testing.T) {
 		invalidBaseURL := "https://DF977BEA-4295-4758-AFF9-0EBCB1F509E2.fail"
-		sc, err := notifier.NewSlack(invalidBaseURL, "super-secret", "general")
+		sc, err := notifier.NewSlack(invalidBaseURL, "super-secret")
 		require.NoError(t, err)
-		err = sc.Notify(context.Background(), "Just testing")
+		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.Error(t, err)
 	})
 
@@ -67,9 +63,9 @@ func TestSlack(t *testing.T) {
 			w.WriteHeader(http.StatusInternalServerError)
 		})
 
-		sc, err := notifier.NewSlack(ts.URL, "super-secret", "general")
+		sc, err := notifier.NewSlack(ts.URL, "super-secret")
 		require.NoError(t, err)
-		err = sc.Notify(context.Background(), "Just testing")
+		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.Error(t, err)
 	})
 
@@ -78,9 +74,9 @@ func TestSlack(t *testing.T) {
 			testutil.WriteTestdata(t, "testdata/unexpected_response_response.json", w)
 		})
 
-		sc, err := notifier.NewSlack(ts.URL, "super-secret", "general")
+		sc, err := notifier.NewSlack(ts.URL, "super-secret")
 		require.NoError(t, err)
-		err = sc.Notify(context.Background(), "Just testing")
+		err = sc.Notify(context.Background(), "general", "Just testing")
 		require.Error(t, err)
 	})
 }
