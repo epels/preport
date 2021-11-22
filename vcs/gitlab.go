@@ -65,6 +65,8 @@ const (
 	StateOpened State = "opened"
 )
 
+var False = false
+
 func NewGitlab(baseURL, bearer string) (*Gitlab, error) {
 	switch "" {
 	case baseURL:
