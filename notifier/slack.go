@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -94,7 +93,7 @@ func (s *Slack) Notify(ctx context.Context, channel, content string) error {
 		return fmt.Errorf("unexpected status code: %d", res.StatusCode)
 	}
 
-	b, err = ioutil.ReadAll(io.LimitReader(res.Body, 1024))
+	b, err = ioutil.ReadAll(res.Body)
 	if err != nil {
 		return fmt.Errorf("io/ioutil: ReadAll: %s", err)
 	}

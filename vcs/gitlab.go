@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"strconv"
 	"time"
 
 	"go.opencensus.io/plugin/ochttp"
@@ -47,6 +48,7 @@ type GitlabOptions struct {
 	HasBeenApproved *bool
 	HasReviewer     *bool
 	Sort            Sort
+	PerPage         int
 }
 
 const (
@@ -203,5 +205,10 @@ func (o GitlabOptions) toValues() (url.Values, error) {
 		}
 		v.Set("reviewer_id", reviewer)
 	}
+	perPage := 100
+	if o.PerPage != 0 {
+		perPage = o.PerPage
+	}
+	v.Set("per_page", strconv.Itoa(perPage))
 	return v, nil
 }

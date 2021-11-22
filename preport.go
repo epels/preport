@@ -14,6 +14,10 @@ type Author struct {
 	Username string
 }
 
+func (p PullRequest) TimeOpen() time.Duration {
+	return time.Since(p.CreatedAt).Round(time.Second)
+}
+
 // PullRequestsBySortedAt providers a sorter based on CreatedAt timestamp, from
 // oldest to newest.
 type PullRequestsByCreatedAt []PullRequest
