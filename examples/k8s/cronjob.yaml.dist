@@ -1,0 +1,76 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: preport
+spec:
+  schedule: "0 * * * *" # Run every hour.
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: preport
+              image: preport:latest # Container image not available _yet_.
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/preport
+              resources:
+                requests:
+                  cpu: "0.2"
+                  memory: "128Mi"
+                limits:
+                  cpu: "0.5"
+                  memory: "512Mi"
+              env:
+                - name: "NOTIFIER_CONFIG"
+                  value: |
+                    {
+                      "notifiers": [
+                        {
+                          "channel": "some-channel",
+                          "projects": [
+                            "1234"
+                          ]
+                        },
+                        {
+                          "channel": "another-channel",
+                          "projects": [
+                            "1234",
+                            "6789"
+                          ]
+                        }
+                      ]
+                    }
+                - name: "REPORT_TEMPLATE"
+                  value: |
+                    *Pull requests pending review :rocket::*
+                
+                    {{range $pr := .}}
+                    	:point_right: <{{$pr.URL}}|{{$pr.Title}}> by {{$pr.Author.Username}} (open since {{$pr.TimeOpen}} {{if (ge $pr.TimeOpen.Hours 10.0)}}:rotating_light:{{end}})
+                    {{end}}
+                
+                    Please give them some :eyes:, and don't forget assigning yourself as reviewer when you do!
+                - name: "GITLAB_BASE_URL"
+                  value: "https://gitlab.com"
+                - name: "GITLAB_BEARER"
+                  valueFrom:
+                    secretKeyRef:
+                      name: preport
+                      key: gitlabBearer
+                - name: "SLACK_BASE_URL"
+                  value: "https://slack.com"
+                - name: "SLACK_BEARER"
+                  valueFrom:
+                    secretKeyRef:
+                      name: preport
+                      key: slackBearer
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: preport
+type: Opaque
+stringData:
+  gitlabBearer: "gitlab-bearer-token" # TODO: Replace with your GitLab token.
+  slackBearer: "slack-bearer-token" # TODO: Replace with your Slack token.
