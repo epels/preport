@@ -15,3 +15,4 @@ Next steps:
 * Expand this README
 * Write docs for setting up
 * Add example manifest for Kubernetes CronJob
+* Automate building and pushing container images

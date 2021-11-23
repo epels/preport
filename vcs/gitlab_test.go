@@ -48,6 +48,7 @@ func TestGitlab_ListPullRequests(t *testing.T) {
 				"assignee_id":     []string{"None"},
 				"reviewer_id":     []string{"None"},
 				"sort":            []string{"desc"},
+				"per_page":        []string{"100"},
 			}, r.URL.Query())
 			assert.Equal(t, "Bearer super-secret", r.Header.Get("Authorization"))
 
