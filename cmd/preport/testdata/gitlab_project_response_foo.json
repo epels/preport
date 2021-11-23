@@ -1,0 +1,74 @@
+[
+  {
+    "id": 25264392,
+    "iid": 14,
+    "project_id": 10885303,
+    "title": "foo-first-title",
+    "description": "",
+    "state": "merged",
+    "created_at": "2019-03-06T14:00:56.380Z",
+    "updated_at": "2019-03-06T14:40:38.551Z",
+    "merged_by": {
+      "id": 94880,
+      "name": "Emile Pels",
+      "username": "epels",
+      "state": "active",
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/94880/avatar.png",
+      "web_url": "https://gitlab.com/epels"
+    },
+    "merged_at": "2019-03-06T14:40:38.576Z",
+    "closed_by": null,
+    "closed_at": null,
+    "target_branch": "master",
+    "source_branch": "add-upload",
+    "user_notes_count": 0,
+    "upvotes": 0,
+    "downvotes": 0,
+    "author": {
+      "id": 94880,
+      "name": "Emile Pels",
+      "username": "foo-first-username",
+      "state": "active",
+      "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/94880/avatar.png",
+      "web_url": "https://gitlab.com/epels"
+    },
+    "assignees": [],
+    "assignee": null,
+    "reviewers": [],
+    "source_project_id": 10885303,
+    "target_project_id": 10885303,
+    "labels": [],
+    "draft": false,
+    "work_in_progress": false,
+    "milestone": null,
+    "merge_when_pipeline_succeeds": true,
+    "merge_status": "can_be_merged",
+    "sha": "02d72d3679b1a0d9d15e6d6a9eb1043be3ea4439",
+    "merge_commit_sha": "1e944ad9f4ad59698c8c1b6ad988edf76166d994",
+    "squash_commit_sha": null,
+    "discussion_locked": null,
+    "should_remove_source_branch": true,
+    "force_remove_source_branch": true,
+    "reference": "!14",
+    "references": {
+      "short": "!14",
+      "relative": "!14",
+      "full": "group/repo!14"
+    },
+    "web_url": "foo-first-url",
+    "time_stats": {
+      "time_estimate": 0,
+      "total_time_spent": 0,
+      "human_time_estimate": null,
+      "human_total_time_spent": null
+    },
+    "squash": false,
+    "task_completion_status": {
+      "count": 0,
+      "completed_count": 0
+    },
+    "has_conflicts": false,
+    "blocking_discussions_resolved": true,
+    "approvals_before_merge": null
+  }
+]

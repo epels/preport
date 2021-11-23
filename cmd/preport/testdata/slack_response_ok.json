@@ -1,0 +1,37 @@
+{
+  "ok": true,
+  "channel": "C02MNFNS0SK",
+  "ts": "1637418902.001000",
+  "message": {
+    "bot_id": "B02NFPNFFU1",
+    "type": "message",
+    "text": "This content can't be displayed.",
+    "user": "U02N5CTP4JG",
+    "ts": "1637418902.001000",
+    "team": "T02N06LB4TX",
+    "bot_profile": {
+      "id": "B02NFPNFFU1",
+      "app_id": "A02MWDW5LQN",
+      "name": "PreportTest",
+      "icons": {
+        "image_36": "https://a.slack-edge.com/80588/img/plugins/app/bot_36.png",
+        "image_48": "https://a.slack-edge.com/80588/img/plugins/app/bot_48.png",
+        "image_72": "https://a.slack-edge.com/80588/img/plugins/app/service_72.png"
+      },
+      "deleted": false,
+      "updated": 1637414868,
+      "team_id": "T02N06LB4TX"
+    },
+    "blocks": [
+      {
+        "type": "section",
+        "block_id": "UTb",
+        "text": {
+          "type": "mrkdwn",
+          "text": "Just testing",
+          "verbatim": false
+        }
+      }
+    ]
+  }
+}

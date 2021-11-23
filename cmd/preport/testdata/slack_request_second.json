@@ -1,0 +1,12 @@
+{
+  "channel": "second",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "foo-first-url,foo-first-title,foo-first-username,bar-first-url,bar-first-title,bar-first-username,bar-second-url,bar-second-title,bar-second-username,"
+      }
+    }
+  ]
+}

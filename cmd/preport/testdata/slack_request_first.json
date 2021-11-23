@@ -1,0 +1,12 @@
+{
+  "channel": "first",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "foo-first-url,foo-first-title,foo-first-username,"
+      }
+    }
+  ]
+}
