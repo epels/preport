@@ -88,6 +88,7 @@ func run(ctx context.Context, genConf generalConfig, stderr io.Writer) error {
 		}
 		if err := sc.Notify(ctx, n.Channel, text); err != nil {
 			errLog.Printf("notifier: Slack.Notify: %s", err)
+			continue
 		}
 	}
 	return nil

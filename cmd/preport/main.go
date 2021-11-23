@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"log"
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -29,10 +29,11 @@ func main() {
 
 	var gc generalConfig
 	if err := envconfig.Process("", &gc); err != nil {
-		log.Fatalf("envconfig: Process: %s", err)
+		_, _ = fmt.Fprintf(os.Stderr, "envconfig: Process: %s\n", err)
+		os.Exit(1)
 	}
 	if err := run(ctx, gc, os.Stderr); err != nil {
-		log.Printf("run: %s", err)
+		_, _ = fmt.Fprintf(os.Stderr, "run: %s\n", err)
 		os.Exit(1)
 	}
 }
