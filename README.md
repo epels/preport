@@ -14,5 +14,4 @@ Next steps:
 
 * Expand this README
 * Write docs for setting up
-* Containerize
 * Add example manifest for Kubernetes CronJob
